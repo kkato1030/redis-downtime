@@ -7,7 +7,7 @@ type=$2
 cluster=${3:-off}
 log_path=log/$type/read_$env.log
 
-. ./common.sh
+. ./_common.sh
 
 # func
 read () {
