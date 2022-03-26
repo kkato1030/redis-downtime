@@ -4,6 +4,7 @@
 key=kakatototo
 env=$1
 type=$2
+cluster=${3:-off}
 log_path=log/$type/read_$env.log
 
 # func
