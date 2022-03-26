@@ -5,10 +5,12 @@ env=$1
 type=$2
 log_path=log/$type/info_$env.log
 
+. ./_common.sh
+
 # func
 info () {
   date +"%Y/%m/%d %I:%M:%S" | tr '\n' '\t'
-  redis-cli -h localhost -p 16379 info 2>&1 | grep redis_version
+  redis-cli -h $host -p $port info 2>&1 | grep redis_version
 }
 
 # main

@@ -7,6 +7,8 @@ type=$2
 cluster=${3:-off}
 log_path=log/$type/write_$env.log
 
+. ./_common.sh
+
 # func
 write () {
   key=$1
@@ -16,9 +18,9 @@ write () {
   date +"%Y/%m/%d %I:%M:%S" | tr '\n' '\t'
   echo -ne "$key: $i\t"
   if [ "$cluster" = "on" ]; then
-    redis-cli -c -h localhost -p 16379 set $key $val 2>&1
+    redis-cli -c -h $host -p $port set $key $val 2>&1
   else
-    redis-cli -h localhost -p 16379 set $key $val 2>&1
+    redis-cli -h $host -p $port set $key $val 2>&1
   fi
 }
 

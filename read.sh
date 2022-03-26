@@ -7,6 +7,8 @@ type=$2
 cluster=${3:-off}
 log_path=log/$type/read_$env.log
 
+. ./common.sh
+
 # func
 read () {
   key=$1
@@ -15,9 +17,9 @@ read () {
   date +"%Y/%m/%d %I:%M:%S" | tr '\n' '\t'
   echo -n "$key: "
   if [ "$cluster" = "on" ]; then
-    redis-cli -c -h localhost -p 16379 get $key 2>&1 | tr -d '"'
+    redis-cli -c -h $host -p $port get $key 2>&1 | tr -d '"'
   else
-    redis-cli -h localhost -p 16379 get $key 2>&1 | tr -d '"'
+    redis-cli -h $host -p $port get $key 2>&1 | tr -d '"'
   fi
 }
 
