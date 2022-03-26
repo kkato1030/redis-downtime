@@ -1,0 +1,7 @@
+# exclude
+log/type/*
+log/version/*
+
+# include
+!.keep
+
